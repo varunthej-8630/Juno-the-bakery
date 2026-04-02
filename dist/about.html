@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Story | Juno The Bakery & Kitchen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { background: var(--color-cream); font-family: var(--font-sans); margin: 0; color: var(--color-navy-dark); }
+    .about-hero {
+      background: var(--color-navy-dark);
+      padding: 140px 60px 80px;
+      color: #FFF;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-hero img {
+      position: absolute; top:0; left:0; width:100%; height:100%;
+      object-fit: cover; opacity:0.2; z-index:0;
+    }
+    .about-hero-content { position: relative; z-index: 1; max-width: 700px; }
+    .about-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 7vw, 80px);
+      font-style: italic;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+    .about-hero p { font-size: 18px; opacity: 0.75; line-height: 1.7; max-width: 500px; }
+
+    /* Navbar Repeated */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 0 60px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--color-navy-dark);
+      border-bottom: 1px solid rgba(245, 197, 24, 0.12);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo-icon { width: 44px; height: 44px; background: var(--color-navy-mid); border-radius: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 9px; border: 1.5px solid rgba(245,197,24,0.3); }
+    .nav-logo-icon span { background: var(--color-gold); border-radius: 2px; }
+    .nav-logo-name { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: #FFF; line-height: 1; }
+    .nav-logo-sub { font-size: 8.5px; text-transform: uppercase; letter-spacing: 0.18em; color: rgba(255,255,255,0.45); font-family: var(--font-sans); }
+    .nav-links { display: flex; gap: 36px; align-items: center; }
+    .nav-link { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; transition: color 0.3s; }
+    .nav-link:hover, .nav-link.active { color: #FFF; font-weight: 600; }
+
+    /* Timeline */
+    .timeline-section {
+      padding: 80px 5%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .timeline-item {
+      display: flex;
+      gap: 40px;
+      margin-bottom: 48px;
+      align-items: flex-start;
+    }
+    .timeline-year {
+      font-family: var(--font-mono);
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--color-gold-warm);
+      flex-shrink: 0;
+      width: 120px;
+      line-height: 1;
+      opacity: 0.7;
+    }
+    .timeline-body h3 {
+      font-family: var(--font-display);
+      font-size: 26px;
+      color: var(--color-navy-dark);
+      margin-bottom: 10px;
+    }
+    .timeline-body p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--color-chocolate);
+      opacity: 0.8;
+    }
+    @media(max-width:900px) {
+      .navbar { padding: 0 24px; }
+      .nav-links { display: none; }
+    }
+    @media(max-width:768px) {
+      .timeline-item { flex-direction: column; gap:12px; }
+      .timeline-year { width:auto; font-size:36px; }
+      .about-hero { padding: 120px 24px 60px; }
+    }
+  </style>
+  <script type="module" crossorigin src="/assets/mobileMenu-BZtpHC2s.js"></script>
+  <script type="module" crossorigin src="/assets/carousel-HkZUfVMA.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/mobileMenu-67OMSHLI.css">
+  <link rel="stylesheet" crossorigin href="/assets/carousel-BhJSx3Z6.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">
+        <span></span><span></span><span></span><span></span>
+      </div>
+      <div>
+        <div class="nav-logo-name">JUNO</div>
+        <div class="nav-logo-sub">The Bakery &amp; Kitchen</div>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="menu.html" class="nav-link">Menu</a>
+      <a href="about.html" class="nav-link active">Our Story</a>
+      <a href="blog.html" class="nav-link">Journal</a>
+    </div>
+  </nav>
+
+  <!-- ABOUT HERO -->
+  <div class="about-hero">
+    <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=1920&q=70" alt="Juno Bakery Heritage">
+    <div class="about-hero-content">
+      <p style="font-size:12px; text-transform:uppercase; letter-spacing:0.25em; color:var(--color-gold); margin-bottom:16px; font-weight:600;">Est. 1975 · Tangutur, AP</p>
+      <h1>Born on the Highway.<br>Built on Trust.</h1>
+      <p>For over five decades, Juno has been more than a bakery. It's been a landmark, a memory, a warm stop in the middle of a long journey.</p>
+    </div>
+  </div>
+
+  <!-- STORY SECTION -->
+  <section class="story-section">
+    <div class="story-grid" style="max-width:1200px; margin:0 auto; padding:0 5%;">
+      <div class="story-image-wrapper">
+        <img class="story-image" src="https://images.unsplash.com/photo-1574085733277-851d9d856a3a?w=800&q=80" alt="Juno Kitchen">
+        <div class="story-image-badge"><span class="year">1975</span><span class="since">Est.</span></div>
+      </div>
+      <div class="story-content">
+        <p class="story-eyebrow">Our Roots</p>
+        <h2 class="story-headline">A Family Recipe,<br>A Highway Legend</h2>
+        <p class="story-body">Juno started as a small roadside bakery in Tangutur — the kind of place where a travelling family could stop, stretch their legs, sip the best chai they'd ever had, and pick up something freshly baked for the road ahead. That spirit has never changed.</p>
+        <p class="story-body">Today, we serve thousands of travellers every month — from families on road trips to truckers, students, and curious wanderers who found us on Google and couldn't resist the 4.1 stars. We think they come back because the food tastes like it was made with someone in mind. Because it was.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="timeline-section">
+    <div class="section-header" style="text-align:center; margin-bottom:60px;">
+      <p class="section-eyebrow">Our Journey</p>
+      <h2 class="section-headline">50 Years of Baking</h2>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1975</div>
+      <div class="timeline-body">
+        <h3>Founded on NH-16</h3>
+        <p>Juno opens its doors as a small bakery stall on the Chennai–Kolkata National Highway near Tangutur, serving fresh buns and chai to early morning travellers.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1990</div>
+      <div class="timeline-body">
+        <h3>Irani Chai Becomes Our Signature</h3>
+        <p>After perfecting the recipe over 15 years, our Irani Dum Chai becomes what regulars call the best chai on any AP highway. Word spreads fast.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2005</div>
+      <div class="timeline-body">
+        <h3>Full Bakery &amp; Restaurant Opens</h3>
+        <p>We expand the space to include a full restaurant wing — separate vegetarian and non-vegetarian sections, clean restrooms, and a dedicated cake counter.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2020</div>
+      <div class="timeline-body">
+        <h3>1,000+ Reviews on Google</h3>
+        <p>Juno earns over 1,000 Google reviews with a strong 4.1-star rating. Travellers from all over India leave behind their stories of that one chai that made the trip.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">Now</div>
+      <div class="timeline-body">
+        <h3>Still Baking. Still Brewing.</h3>
+        <p>With over 1,437 reviews and a loyal community of travellers, Juno continues to be the highway's most beloved pitstop — one fresh bun at a time.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="big-footer">
+    <div class="footer-brand-title">JUNO</div>
+  </footer>
+
+</body>
+</html>

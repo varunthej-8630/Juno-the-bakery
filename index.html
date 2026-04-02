@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juno The Bakery & Kitchen | Find The Best Brew — Tangutur</title>
+  <meta name="description" content="Juno The Bakery & Kitchen — Highway's finest bakery in Tangutur, AP. Irani chai, fresh-baked goods, milk cake, pizza, and more. Since 1975.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/hero-carousel.css">
+  <link rel="stylesheet" href="css/menu.css">
+  <link rel="stylesheet" href="css/about.css">
+  <link rel="stylesheet" href="css/footer.css">
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--color-cream); font-family: var(--font-sans); overflow-x: hidden; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    img { display: block; max-width: 100%; }
+
+    /* ---- NAVBAR ---- */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 0 60px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.4s ease;
+    }
+    .navbar.scrolled {
+      background: rgba(15, 35, 71, 0.97);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(245, 197, 24, 0.12);
+      height: 68px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    /* SVG inline logo - 2x2 yellow grid on navy */
+    .nav-logo-icon {
+      width: 44px; height: 44px;
+      background: var(--color-navy);
+      border-radius: 8px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      padding: 9px;
+      flex-shrink: 0;
+      border: 1.5px solid rgba(245,197,24,0.3);
+    }
+    .nav-logo-icon span {
+      background: var(--color-gold);
+      border-radius: 2px;
+    }
+    .nav-logo-text { display: flex; flex-direction: column; gap: 1px; }
+    .nav-logo-name {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: #FFF;
+      letter-spacing: 0.04em;
+      line-height: 1;
+    }
+    .nav-logo-sub {
+      font-family: var(--font-sans);
+      font-size: 8.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: rgba(255,255,255,0.45);
+      font-weight: 500;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+    .nav-link {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1.5px;
+      background: var(--color-gold);
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover, .nav-link.active { color: #FFF; }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+    .nav-cta {
+      padding: 10px 22px;
+      background: var(--color-gold);
+      color: var(--color-navy-dark);
+      border: none;
+      border-radius: 3px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    .nav-cta:hover {
+      background: var(--color-gold-warm);
+      box-shadow: 0 4px 16px rgba(245,197,24,0.4);
+      transform: translateY(-1px);
+    }
+    .nav-actions { display: flex; align-items: center; gap: 16px; }
+    .nav-search-btn {
+      background: transparent; border: none; color: #FFF; width: 36px; height: 36px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s;
+    }
+    .nav-search-btn:hover { background: rgba(255,255,255,0.1); color: var(--color-gold); }
+
+    /* Hamburger for mobile */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      width: 24px; height: 2px;
+      background: #FFF;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    /* ---- HIGHWAY STRIP (Top Notice Bar) ---- */
+    .top-bar {
+      background: var(--color-navy);
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 9px 20px;
+      font-size: 12px;
+      font-family: var(--font-sans);
+      letter-spacing: 0.08em;
+      position: relative;
+      z-index: 1001;
+    }
+    .top-bar strong { color: var(--color-gold); }
+
+    /* Container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+    }
+
+    /* ---- FEATURE IMAGE STRIPS ---- */
+    .img-split-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 55vh;
+      min-height: 400px;
+    }
+    .img-split-panel {
+      position: relative;
+      overflow: hidden;
+    }
+    .img-split-panel img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+    .img-split-panel:hover img { transform: scale(1.06); }
+    .img-split-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(15,35,71,0.45);
+      display: flex;
+      align-items: flex-end;
+      padding: 32px;
+      transition: background 0.3s;
+    }
+    .img-split-panel:hover .img-split-overlay { background: rgba(15,35,71,0.3); }
+    .img-split-label {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 28px;
+      color: #FFF;
+      font-weight: 600;
+    }
+
+    /* ---- LOCATION STRIP ---- */
+    .location-strip {
+      background: var(--color-navy);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 60px;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .location-strip .loc-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: rgba(255,255,255,0.7);
+      font-family: var(--font-sans);
+      font-size: 14px;
+    }
+    .location-strip .loc-item svg { color: var(--color-gold); flex-shrink: 0; }
+    .location-strip .loc-item strong { color: #FFF; }
+
+    /* ---- REVEAL ANIMATION ---- */
+    [data-reveal].revealed {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    /* ---- MOBILE NAV ---- */
+    @media (max-width: 900px) {
+      .navbar { padding: 0 24px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-cta { display: none; }
+    }
+    @media (max-width: 768px) {
+      .img-split-section { grid-template-columns: 1fr; height: auto; }
+      .img-split-panel { height: 50vw; min-height: 220px; }
+      .location-strip { padding: 20px 24px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script type="module" src="js/carousel.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    🚗 <strong>Highway Pitstop in Tangutur, AP</strong> &nbsp;·&nbsp; Fresh-baked daily since 1975 &nbsp;·&nbsp; <strong>4.1 ★ on Google (1,437 reviews)</strong> &nbsp;·&nbsp; Call: <strong>099666 99486</strong>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">
+        <span></span><span></span><span></span><span></span>
+      </div>
+      <div class="nav-logo-text">
+        <span class="nav-logo-name">JUNO</span>
+        <span class="nav-logo-sub">The Bakery &amp; Kitchen</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="menu.html" class="nav-link">Menu</a>
+      <a href="about.html" class="nav-link">Our Story</a>
+      <a href="blog.html" class="nav-link">Journal</a>
+    </div>
+    <div class="nav-actions">
+      <a href="menu.html" class="nav-cta">Order Now</a>
+      <button class="nav-hamburger" onclick="toggleMobileMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <script>
+    const lenis = new Lenis();
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+    });
+  </script>
+
+  <!-- ======================================================
+       HERO CAROUSEL — 4 SLIDES
+       Each slide showcases a signature Juno product/vibe
+  ====================================================== -->
+  <section class="hero-carousel" id="hero">
+
+    <!-- Rating badge top-right -->
+    <div class="hero-rating-badge">
+      <span class="stars">★★★★</span>
+      <span>4.1</span>
+      <span class="count">(1,437 reviews)</span>
+    </div>
+
+    <div class="carousel-container">
+
+      <!-- SLIDE 1: Irani Dum Chai (Most popular, lead product) -->
+      <div class="carousel-slide active" data-slide="0">
+        <img class="carousel-bg"
+             src="https://images.unsplash.com/photo-1556742393-d75f468bfcb0?w=1920&q=85"
+             alt="Irani Chai — Juno Bakery">
+        <div class="carousel-overlay"></div>
+        <div class="carousel-content-split">
+          <div class="hero-top-left">
+            <p class="carousel-label">Our Signature</p>
+            <h1 class="carousel-headline">Irani Dum Chai</h1>
+            <p class="carousel-tagline">The best you'll ever sip on the highway.</p>
+          </div>
+          <div class="hero-bottom-right">
+            <p class="carousel-description">Slow-brewed, deeply aromatic, perfectly sweet. Highway travellers say it's the best in Andhra Pradesh.</p>
+            <div class="carousel-price">
+              <span class="price-amount">₹25</span>
+              <span class="price-unit">per cup</span>
+            </div>
+            <div class="carousel-cta">
+              <button class="btn-primary" onclick="scrollToMenu()">
+                View Menu
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+              <a href="about.html" class="btn-secondary">Our Story</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2: Freshly Baked Goods / Milk Cake -->
+      <div class="carousel-slide" data-slide="1">
+        <img class="carousel-bg"
+             src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=1920&q=85"
+             alt="Fresh Bakery — Juno">
+        <div class="carousel-overlay"></div>
+        <div class="carousel-content-split">
+          <div class="hero-top-left">
+            <p class="carousel-label">Must Try</p>
+            <h1 class="carousel-headline">Milk Cake</h1>
+            <p class="carousel-tagline">Melts in your mouth, lingers in memory.</p>
+          </div>
+          <div class="hero-bottom-right">
+            <div class="carousel-price">
+              <span class="price-amount">₹80</span>
+              <span class="price-unit">per slice</span>
+            </div>
+            <div class="carousel-cta">
+              <button class="btn-primary" onclick="scrollToMenu()">
+                Order Now
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 3: Pizza -->
+      <div class="carousel-slide" data-slide="2">
+        <img class="carousel-bg"
+             src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1920&q=85"
+             alt="Pizza — Juno Bakery & Kitchen">
+        <div class="carousel-overlay"></div>
+        <div class="carousel-content-split">
+          <div class="hero-top-left">
+            <p class="carousel-label">Hot & Fresh</p>
+            <h1 class="carousel-headline">Chicken Pizza</h1>
+            <p class="carousel-tagline">Crispy base, generous toppings, highway perfection.</p>
+          </div>
+          <div class="hero-bottom-right">
+            <div class="carousel-price">
+              <span class="price-amount">₹160</span>
+              <span class="price-unit">per pizza</span>
+            </div>
+            <div class="carousel-cta">
+              <button class="btn-primary" onclick="scrollToMenu()">
+                Explore Menu
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 4: Red Velvet / Cakes -->
+      <div class="carousel-slide" data-slide="3">
+        <img class="carousel-bg"
+             src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=1920&q=85"
+             alt="Red Velvet Cake — Juno Bakery">
+        <div class="carousel-overlay"></div>
+        <div class="carousel-content-split">
+          <div class="hero-top-left">
+            <p class="carousel-label">Fresh Every Day</p>
+            <h1 class="carousel-headline">Red Velvet Cake</h1>
+            <p class="carousel-tagline">Exceptional quality. Freshly presented, daily.</p>
+          </div>
+          <div class="hero-bottom-right">
+            <div class="carousel-price">
+              <span class="price-amount">₹120</span>
+              <span class="price-unit">per pastry</span>
+            </div>
+            <div class="carousel-cta">
+              <button class="btn-primary" onclick="scrollToMenu()">
+                Order a Cake
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Nav Arrows -->
+    <button class="carousel-nav carousel-nav--prev" onclick="prevSlide()" aria-label="Previous slide">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18L9 12L15 6"/></svg>
+    </button>
+    <button class="carousel-nav carousel-nav--next" onclick="nextSlide()" aria-label="Next slide">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6L15 12L9 18"/></svg>
+    </button>
+
+    <!-- Pagination Dots -->
+    <div class="carousel-pagination">
+      <button class="pagination-dot active" onclick="goToSlide(0)" aria-label="Slide 1"></button>
+      <button class="pagination-dot" onclick="goToSlide(1)" aria-label="Slide 2"></button>
+      <button class="pagination-dot" onclick="goToSlide(2)" aria-label="Slide 3"></button>
+      <button class="pagination-dot" onclick="goToSlide(3)" aria-label="Slide 4"></button>
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="scroll-indicator">SCROLL</div>
+
+  </section>
+
+  <!-- HIGHWAY STRIP -->
+  <div class="highway-strip">
+    <div class="highway-track">
+      <span class="highway-item">Fresh Baked Daily</span>
+      <span class="highway-item">Highway Road, Tangutur AP</span>
+      <span class="highway-item">Irani Dum Chai</span>
+      <span class="highway-item">Milk Cake</span>
+      <span class="highway-item">Red Velvet Cake</span>
+      <span class="highway-item">Free Parking</span>
+      <span class="highway-item">Clean Restrooms</span>
+      <span class="highway-item">Veg &amp; Non-Veg</span>
+      <span class="highway-item">Since 1975</span>
+      <!-- Duplicate for seamless loop -->
+      <span class="highway-item">Fresh Baked Daily</span>
+      <span class="highway-item">Highway Road, Tangutur AP</span>
+      <span class="highway-item">Irani Dum Chai</span>
+      <span class="highway-item">Milk Cake</span>
+      <span class="highway-item">Red Velvet Cake</span>
+      <span class="highway-item">Free Parking</span>
+      <span class="highway-item">Clean Restrooms</span>
+      <span class="highway-item">Veg &amp; Non-Veg</span>
+      <span class="highway-item">Since 1975</span>
+    </div>
+  </div>
+
+  <!-- LOCATION STRIP -->
+  <div class="location-strip">
+    <div class="loc-item">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span>Highway Road, Tangutur, <strong>Andhra Pradesh 523274</strong></span>
+    </div>
+    <div class="loc-item">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.63a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.08 6.08l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+      <span>Call us: <strong>099666 99486</strong></span>
+    </div>
+    <div class="loc-item">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      <span>Open: <strong>8 AM – 10 PM</strong> Daily</span>
+    </div>
+    <div class="loc-item">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <span><strong>4.1 ★</strong> — 1,437 Google Reviews</span>
+    </div>
+  </div>
+
+  <!-- ======================================================
+       MENU / PRODUCTS SECTION
+  ====================================================== -->
+  <section id="menu" class="menu-section">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <p class="section-eyebrow">Our Menu</p>
+        <h2 class="section-headline">Baked With Love,<br>Served With Pride</h2>
+        <p class="section-description">From our legendary Irani chai to freshly baked cakes — everything at Juno is made with heart and served fresh every day.</p>
+      </div>
+
+      <!-- Category Tabs -->
+      <div class="menu-tabs" data-reveal>
+        <button class="menu-tab active" onclick="filterMenu('all', this)">All</button>
+        <button class="menu-tab" onclick="filterMenu('chai-coffee', this)">Chai &amp; Coffee</button>
+        <button class="menu-tab" onclick="filterMenu('cakes', this)">Cakes &amp; Pastries</button>
+        <button class="menu-tab" onclick="filterMenu('bakery', this)">Bakery</button>
+        <button class="menu-tab" onclick="filterMenu('pizza', this)">Pizza</button>
+        <button class="menu-tab" onclick="filterMenu('snacks', this)">Snacks</button>
+      </div>
+
+      <!-- Menu Grid -->
+      <div class="menu-grid">
+
+        <!-- FEATURED — Irani Chai -->
+        <div class="menu-card menu-card--featured" data-category="chai-coffee" data-reveal>
+          <div class="menu-card__image-wrapper">
+            <img class="menu-card__image"
+                 src="https://images.unsplash.com/photo-1556742393-d75f468bfcb0?w=800&q=80"
+                 alt="Irani Dum Chai">
+            <span class="menu-card__badge badge--bestseller">★ Bestseller</span>
+          </div>
+          <div class="menu-card__content">
+            <p class="menu-card__category">Signature Chai</p>
+            <h3 class="menu-card__title">Irani Dum Chai</h3>
+            <p class="menu-card__description">Slow-brewed to perfection with Assam tea leaves and warm spices. The chai that highway travellers drive back for. Hands-down the best in Andhra Pradesh.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹25</span>
+              <button class="menu-card__add-btn" aria-label="Add to order">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Milk Cake -->
+        <div class="menu-card" data-category="cakes" data-reveal>
+          <div class="menu-card__image-wrapper">
+            <img class="menu-card__image"
+                 src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=600&q=80"
+                 alt="Milk Cake">
+            <span class="menu-card__badge badge--bestseller">Must Try</span>
+          </div>
+          <div class="menu-card__content">
+            <p class="menu-card__category">Cakes &amp; Desserts</p>
+            <h3 class="menu-card__title">Juno Special Milk Cake</h3>
+            <p class="menu-card__description">Melts in the mouth. Rich, creamy, and made in-house every single morning. A legend at Juno.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹80</span>
+              <button class="menu-card__add-btn" aria-label="Add to order">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Red Velvet Cake -->
+        <div class="menu-card" data-category="cakes" data-reveal>
+          <div class="menu-card__image-wrapper">
+            <img class="menu-card__image"
+                 src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?w=600&q=80"
+                 alt="Red Velvet Cake">
+            <span class="menu-card__badge badge--new">Fan Fav</span>
+          </div>
+          <div class="menu-card__content">
+            <p class="menu-card__category">Cakes &amp; Pastries</p>
+            <h3 class="menu-card__title">Red Velvet Cake</h3>
+            <p class="menu-card__description">Freshly prepared, beautifully presented, and exceptionally moist. A feast for the eyes and the palate.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹120</span>
+              <button class="menu-card__add-btn" aria-label="Add to order">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chicken Pizza -->
+        <div class="menu-card" data-category="pizza" data-reveal>
+          <div class="menu-card__image-wrapper">
+            <img class="menu-card__image"
+                 src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&q=80"
+                 alt="Chicken Pizza">
+            <span class="menu-card__badge badge--nonveg">Non-Veg</span>
+          </div>
+          <div class="menu-card__content">
+            <p class="menu-card__category">Pizza</p>
+            <h3 class="menu-card__title">Fried Chicken Pizza</h3>
+            <p class="menu-card__description">Crispy base, loaded chicken toppings, extra cheese. Travellers detour just for this one.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹160</span>
+              <button class="menu-card__add-btn" aria-label="Add to order">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cream Bun -->
+        <div class="menu-card" data-category="bakery" data-reveal>
+          <div class="menu-card__image-wrapper">
+            <img class="menu-card__image"
+                 src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&q=80"
+                 alt="Cream Bun">
+            <span class="menu-card__badge badge--veg">Veg</span>
+          </div>
+          <div class="menu-card__content">
+            <p class="menu-card__category">Fresh Bakery</p>
+            <h3 class="menu-card__title">Cream Bun</h3>
+            <p class="menu-card__description">Soft, pillowy buns baked in-house — just as a cream bun should be. The freshest on the highway.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹30</span>
+              <button class="menu-card__add-btn" aria-label="Add to order">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Egg Puff -->
+        <div class="menu-card" data-category="bakery" data-reveal>
+          <div class="menu-card__image-wrapper">
+            <img class="menu-card__image"
+                 src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600&q=80"
+                 alt="Egg Puff">
+          </div>
+          <div class="menu-card__content">
+            <p class="menu-card__category">Savoury Bakery</p>
+            <h3 class="menu-card__title">Egg Puff</h3>
+            <p class="menu-card__description">Flaky, golden, hot out of the oven. Classic Andhra highway snack, done right at Juno.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹20</span>
+              <button class="menu-card__add-btn" aria-label="Add to order">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Coffee -->
+        <div class="menu-card" data-category="chai-coffee" data-reveal>
+          <div class="menu-card__image-wrapper">
+            <img class="menu-card__image"
+                 src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80"
+                 alt="Filter Coffee">
+          </div>
+          <div class="menu-card__content">
+            <p class="menu-card__category">Coffee</p>
+            <h3 class="menu-card__title">Filter Coffee</h3>
+            <p class="menu-card__description">Classic South Indian filter coffee, freshly brewed to the perfect decoction ratio. Strong, smooth, comforting.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹30</span>
+              <button class="menu-card__add-btn" aria-label="Add to order">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shawarma -->
+        <div class="menu-card" data-category="snacks" data-reveal>
+          <div class="menu-card__image-wrapper">
+            <img class="menu-card__image"
+                 src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&q=80"
+                 alt="Shawarma">
+            <span class="menu-card__badge badge--new">New</span>
+          </div>
+          <div class="menu-card__content">
+            <p class="menu-card__category">Street Favourites</p>
+            <h3 class="menu-card__title">Chicken Shawarma</h3>
+            <p class="menu-card__description">Guests say it rivals the best in Hyderabad. Packed with flavour, wrapped in freshness. Don't miss it.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹120</span>
+              <button class="menu-card__add-btn" aria-label="Add to order">+</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sandwich -->
+        <div class="menu-card" data-category="snacks" data-reveal>
+          <div class="menu-card__image-wrapper">
+            <img class="menu-card__image"
+                 src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600&q=80"
+                 alt="Sandwich">
+            <span class="menu-card__badge badge--veg">Veg</span>
+          </div>
+          <div class="menu-card__content">
+            <p class="menu-card__category">Sandwiches</p>
+            <h3 class="menu-card__title">Crispy Veggie Sandwich</h3>
+            <p class="menu-card__description">Stacked with fresh vegetables, housemade spread on toasted bread. A highway classic for veg travellers.</p>
+            <div class="menu-card__footer">
+              <span class="menu-card__price">₹60</span>
+              <button class="menu-card__add-btn" aria-label="Add to order">+</button>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- .menu-grid -->
+    </div><!-- .container -->
+  </section>
+
+  <!-- ======================================================
+       IMAGE SPLIT SECTION — Visual break
+  ====================================================== -->
+  <div class="img-split-section">
+    <div class="img-split-panel">
+      <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=900&q=80" alt="Fresh Baked Goods">
+      <div class="img-split-overlay">
+        <span class="img-split-label">Fresh-baked, every morning</span>
+      </div>
+    </div>
+    <div class="img-split-panel">
+      <img src="https://images.unsplash.com/photo-1556742393-d75f468bfcb0?w=900&q=80" alt="Chai at Juno">
+      <div class="img-split-overlay">
+        <span class="img-split-label">The best chai on the highway</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================
+       STORY / FEATURE SECTION
+  ====================================================== -->
+  <section class="story-section">
+    <div class="story-grid">
+      <div class="story-image-wrapper" data-reveal>
+        <img class="story-image"
+             src="https://images.unsplash.com/photo-1574085733277-851d9d856a3a?w=800&q=80"
+             alt="Juno Bakery Interior">
+        <div class="story-image-badge">
+          <span class="year">1975</span>
+          <span class="since">Est.</span>
+        </div>
+      </div>
+      <div class="story-content" data-reveal>
+        <p class="story-eyebrow">Our Story</p>
+        <h2 class="story-headline">Born on the Highway,<br>Loved Across Andhra</h2>
+        <p class="story-body">
+          What began as a small bakery beside the NH-16 has grown into one of the most beloved pit-stops between Chennai and Hyderabad. Juno has been feeding hungry travellers, local families, and late-night drivers for over four decades — with the same warmth, freshness, and quality that started it all.
+        </p>
+        <p class="story-body">
+          Our Irani Dum Chai is brewed the traditional way. Our buns are shaped by hand and baked fresh every morning. Our milk cake is a recipe passed down through generations. And our smiles? Those don't cost a thing.
+        </p>
+        <div class="story-stats">
+          <div class="stat-item">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Years Baking</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">1,437</div>
+            <div class="stat-label">Google Reviews</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">4.1★</div>
+            <div class="stat-label">Average Rating</div>
+          </div>
+        </div>
+        <a href="about.html" class="btn-primary" style="display:inline-flex; color:var(--color-gold); border-color:var(--color-gold);">
+          Read Full Story
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       FEATURED IMAGE SECTION — "The Bake"
+  ====================================================== -->
+  <section class="feature-video-section">
+    <img class="feature-video-bg"
+         src="https://images.unsplash.com/photo-1486887396153-fa416526c108?w=1920&q=80"
+         alt="Juno Bakery Kitchen">
+    <div class="feature-video-overlay" style="background: linear-gradient(to bottom, transparent, rgba(15,35,71,0.85));"></div>
+    <div class="feature-video-content">
+      <span class="feature-label">The Craft</span>
+      <h2 class="feature-headline">Baked with Honest Hands</h2>
+      <p class="feature-text">Every item at Juno is crafted in our open kitchen — no shortcuts, no substitutes. Just flour, care, and fifty years of knowing exactly what the highway traveller needs.</p>
+      <a href="menu.html" class="btn-primary">Explore Full Menu</a>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       TESTIMONIALS SCROLL STRIP
+  ====================================================== -->
+  <div class="testimonial-strip">
+    <div class="testimonial-track">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Their Irani dum chai hands down THE BEST. And also their buns — soft, fluffy and all you expect a cup to be. Don't miss this spot."</p>
+        <span class="testimonial-author">Siktha S. — Google Review</span>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"The fried chicken pizza with extra cheese was amazing. Specifically the pizza — it's just too good! The staff were super friendly too."</p>
+        <span class="testimonial-author">Shanmuk — Google Review</span>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★☆</div>
+        <p class="testimonial-text">"A perfect pit stop. Clean restrooms, bakery items, great tea. Milk Cake is a must — it just melts in the mouth."</p>
+        <span class="testimonial-author">Sreeram A. — Google Review</span>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"The shawarma was the best I ever had. Now a days Hyderabad even doesn't serve at this standard. Must recommend!"</p>
+        <span class="testimonial-author">Bollam H. — Google Review</span>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"A perfect pitstop from Chennai to Hyderabad. Wide variety of food, clean restrooms. The Red Velvet cake was exceptional and freshly presented."</p>
+        <span class="testimonial-author">Ajit Daniel — Google Review</span>
+      </div>
+      <!-- Duplicate for seamless loop -->
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Their Irani dum chai hands down THE BEST. And also their buns — soft, fluffy and all you expect a cup to be. Don't miss this spot."</p>
+        <span class="testimonial-author">Siktha S. — Google Review</span>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"The fried chicken pizza with extra cheese was amazing. Specifically the pizza — it's just too good! Staff were super friendly."</p>
+        <span class="testimonial-author">Shanmuk — Google Review</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================
+       SECOND FEATURE SECTION — "The Journey"
+  ====================================================== -->
+  <section class="feature-video-section" style="height: 55vh;">
+    <img class="feature-video-bg"
+         src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=1920&q=80"
+         alt="Fresh Pastries">
+    <div class="feature-video-overlay" style="background: rgba(15,35,71,0.4);"></div>
+    <div class="feature-video-content" style="text-align: left; margin: 0 auto; max-width: 1200px; width: 100%; padding: 0 60px;">
+      <div style="max-width: 520px;">
+        <span class="feature-label" style="justify-content: flex-start;">Fresh Arrivals</span>
+        <h2 class="feature-headline" style="font-size: clamp(36px, 5vw, 56px);">Pastries, Puffs &amp; More</h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       BIG FOOTER
+  ====================================================== -->
+  <footer class="big-footer">
+    <div class="footer-top">
+      <div class="footer-logo-col">
+        <a href="index.html" class="footer-logo">
+          <div class="footer-logo-icon">
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <div class="footer-logo-text">
+            <span class="footer-logo-name">JUNO</span>
+            <span class="footer-logo-sub">The Bakery &amp; Kitchen</span>
+          </div>
+        </a>
+        <p class="footer-tagline">Highway Road's most beloved bakery — serving Tangutur and every traveller passing through since 1975.</p>
+        <address class="footer-address" style="font-style:normal;">
+          Highway Road, Tangutur<br>
+          Andhra Pradesh 523274<br>
+          <a href="tel:09966699486">📞 099666 99486</a>
+        </address>
+      </div>
+      <div class="footer-col">
+        <h4>Menu</h4>
+        <a href="menu.html">Chai &amp; Coffee</a>
+        <a href="menu.html">Cakes &amp; Pastries</a>
+        <a href="menu.html">Bakery Items</a>
+        <a href="menu.html">Pizza</a>
+        <a href="menu.html">Snacks</a>
+      </div>
+      <div class="footer-col">
+        <h4>Visit Us</h4>
+        <a href="#">Get Directions</a>
+        <a href="#">Opening Hours</a>
+        <a href="#">Free Parking</a>
+        <a href="#">Clean Restrooms</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+        <a href="#">Google Maps</a>
+        <a href="#">Write a Review</a>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="#">Dine In</a>
+        <a href="#">Takeaway</a>
+        <a href="#">Birthday Cakes</a>
+        <a href="#">Wholesale Bakery</a>
+      </div>
+    </div>
+
+    <div class="footer-divider"></div>
+    <div class="footer-brand-title">JUNO</div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 <span>Juno The Bakery &amp; Kitchen</span>. All rights reserved. Tangutur, AP.</p>
+      <p class="footer-copy">Find The Best Brew · <span>Since 1975</span></p>
+    </div>
+  </footer>
+
+  <!-- Floating Chat Button -->
+  <button class="chat-btn" onclick="window.open('tel:09966699486')">
+    <span class="pulse-dot"></span>
+    Call Us Now
+  </button>
+
+  <script type="module" src="js/mobileMenu.js"></script>
+</body>
+</html>

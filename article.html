@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Journal | Juno The Bakery & Kitchen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/hero-carousel.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <style>
+    body { background-color: var(--color-cream); color: var(--color-navy-dark); font-family: var(--font-sans); margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
+    .article-nav { background: var(--color-navy-dark); padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; }
+    .article-container { max-width: 800px; margin: 0 auto; padding: 80px 20px; flex: 1; }
+    .article-header { text-align: center; margin-bottom: 56px; }
+    .article-category { font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-gold-warm); display: block; margin-bottom: 16px; font-weight: 700; }
+    .article-title { font-family: var(--font-display); font-size: clamp(36px, 6vw, 56px); line-height: 1.1; margin-bottom: 20px; }
+    .article-meta { font-size: 13px; color: var(--color-crust); }
+    .article-image { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 12px; margin-bottom: 56px; }
+    .article-content { font-size: 17px; line-height: 1.85; color: var(--color-chocolate); }
+    .article-content p { margin-bottom: 24px; }
+    .article-content h2 { font-family: var(--font-display); font-size: 30px; color: var(--color-navy-dark); margin: 40px 0 16px; }
+    .article-content blockquote {
+      border-left: 4px solid var(--color-gold);
+      margin: 40px 0; padding: 16px 24px;
+      font-family: var(--font-display); font-size: 22px;
+      font-style: italic; color: var(--color-navy-mid);
+      background: rgba(245,197,24,0.06); border-radius: 0 8px 8px 0;
+    }
+    @media(max-width:768px) { .article-nav { padding: 16px 24px; } .article-container { padding: 40px 20px; } }
+  </style>
+</head>
+<body>
+  <nav class="article-nav">
+    <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+      <div style="width:36px;height:36px;background:var(--color-navy-mid);border-radius:6px;display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:7px;border:1px solid rgba(245,197,24,0.3);">
+        <span style="background:var(--color-gold);border-radius:1px;"></span>
+        <span style="background:var(--color-gold);border-radius:1px;"></span>
+        <span style="background:var(--color-gold);border-radius:1px;"></span>
+        <span style="background:var(--color-gold);border-radius:1px;"></span>
+      </div>
+      <span style="font-family:var(--font-display);font-size:18px;font-weight:700;color:#FFF;">JUNO</span>
+    </a>
+    <div style="display:flex;gap:32px;">
+      <a href="index.html" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;text-transform:uppercase;">Home</a>
+      <a href="menu.html" style="color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;text-transform:uppercase;">Menu</a>
+      <a href="blog.html" style="color:#FFF;text-decoration:none;font-size:13px;text-transform:uppercase;font-weight:600;">Journal</a>
+    </div>
+  </nav>
+
+  <main class="article-container" id="article-main"></main>
+
+  <footer class="big-footer">
+    <div class="footer-brand-title">JUNO</div>
+  </footer>
+
+  <script>
+    const articles = {
+      'art-of-chai': {
+        title: "The Art of the Perfect Irani Chai",
+        category: "Brewing Guide",
+        date: "March 15, 2025",
+        image: "https://images.unsplash.com/photo-1556742393-d75f468bfcb0?w=1200&q=85",
+        content: `
+          <p>There is a stillness that comes with brewing proper Irani chai. It cannot be rushed. The tea needs time. The milk needs patience. The flame needs respect. At Juno, we've been doing it this way for over fifty years — and we wouldn't change a thing.</p>
+          <blockquote>"The chai that highway travellers drive back for." — One of our Google reviewers</blockquote>
+          <h2>The Slow Brew Method</h2>
+          <p>Irani chai differs from regular tea in one crucial way: the milk is simmered separately, low and slow, for nearly thirty minutes. The result is a thick, slightly caramelised base that gives the chai its signature richness and warmth. Our recipe hasn't changed since 1990 — the year we decided Irani chai would be our signature.</p>
+          <h2>Why It Matters on the Highway</h2>
+          <p>When you've been driving for three hours on NH-16, a proper cup of chai is more than a beverage — it's a reset. It's the reason you pull off the road. It's the memory you carry back to wherever you came from. That's what we aim to serve at Juno, every single cup.</p>
+        `
+      },
+      'highway-story': {
+        title: "50 Years on the NH-16: A Highway Love Story",
+        category: "Our Story",
+        date: "January 12, 2025",
+        image: "https://images.unsplash.com/photo-1508361001413-7a9dca21d08a?w=1200&q=85",
+        content: `
+          <p>In 1975, a small bakery opened beside the National Highway near Tangutur. It had no seating, no signage anyone would remember, and no idea it would one day become one of the most-reviewed highway stops in Andhra Pradesh.</p>
+          <h2>A Place for Every Journey</h2>
+          <p>What made Juno special wasn't just the food — it was the feeling. The smell of fresh buns hitting you before you'd even parked. The warmth of a proper glass of chai. The staff who remembered your order if you'd stopped twice before.</p>
+          <blockquote>"No Nagarjuna or Nandas will beat their authentic taste." — A loyal guest</blockquote>
+          <p>Today, 1,437 Google reviews and a 4.1-star average later, that feeling is still exactly the same. The highway has grown. The building has grown. But the heart of Juno — honest food, warm service, fresh daily — has never changed.</p>
+        `
+      },
+      'milk-cake-recipe': {
+        title: "The Secret Behind Our Milk Cake",
+        category: "Behind the Oven",
+        date: "February 8, 2025",
+        image: "https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=1200&q=85",
+        content: `
+          <p>Ask any regular at Juno what they always order, and the answer is almost always the same: milk cake. It's been our bestseller for over three decades. Guests say it melts in the mouth. We say it's made with the same patience as everything else at Juno.</p>
+          <h2>What Makes It Different</h2>
+          <p>Our milk cake is made fresh every single morning. No preservatives. No shortcuts. Just full-cream milk, slow-reduced and set with care. The texture is firm but yielding — a little grainy, a little silky, entirely its own thing.</p>
+          <blockquote>"Juno special milk cake — where it just melts in the mouth." — Sreeram A., Google Review</blockquote>
+          <p>We won't give away the full recipe. But we will say this: it starts with milk from local sources, and it ends with something that pairs perfectly with our Irani chai. Come try it. We'll be here.</p>
+        `
+      }
+    };
+
+    const handle = new URLSearchParams(window.location.search).get('handle');
+    const main   = document.getElementById('article-main');
+
+    if (handle && articles[handle]) {
+      const art = articles[handle];
+      main.innerHTML = `
+        <div class="article-header">
+          <span class="article-category">${art.category}</span>
+          <h1 class="article-title">${art.title}</h1>
+          <div class="article-meta">${art.date} · Juno The Bakery &amp; Kitchen</div>
+        </div>
+        <img src="${art.image}" class="article-image" alt="${art.title}">
+        <article class="article-content">${art.content}</article>
+      `;
+      document.title = art.title + ' | Juno Bakery';
+    } else {
+      main.innerHTML = '<p style="text-align:center; padding:40px; opacity:0.5;">Article not found. <a href="blog.html">Back to Journal →</a></p>';
+    }
+  </script>
+  <script type="module" src="js/mobileMenu.js"></script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Full Menu | Juno The Bakery & Kitchen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/hero-carousel.css">
+  <link rel="stylesheet" href="css/menu.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <style>
+    body { background: var(--color-cream); font-family: var(--font-sans); margin: 0; }
+    
+    /* Navbar styling repeated for consistency */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 0 60px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--color-navy-dark);
+      border-bottom: 1px solid rgba(245, 197, 24, 0.12);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo-icon { width: 44px; height: 44px; background: var(--color-navy-mid); border-radius: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 9px; border: 1.5px solid rgba(245,197,24,0.3); }
+    .nav-logo-icon span { background: var(--color-gold); border-radius: 2px; }
+    .nav-logo-name { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: #FFF; line-height: 1; }
+    .nav-logo-sub { font-size: 8.5px; text-transform: uppercase; letter-spacing: 0.18em; color: rgba(255,255,255,0.45); font-family: var(--font-sans); }
+    .nav-links { display: flex; gap: 36px; align-items: center; }
+    .nav-link { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; transition: color 0.3s; }
+    .nav-link:hover, .nav-link.active { color: #FFF; font-weight: 600; }
+
+    .menu-page-hero {
+      background: var(--color-navy-dark);
+      padding: 140px 60px 60px;
+      color: #FFF;
+      border-bottom: 3px solid var(--color-gold);
+    }
+    .menu-page-hero h1 { font-family: var(--font-display); font-size: clamp(40px, 6vw, 70px); font-weight: 700; margin-bottom: 16px; }
+    .menu-page-hero p { font-size: 18px; opacity: 0.7; max-width: 600px; }
+
+    @media (max-width: 1024px) {
+      .navbar { padding: 0 24px; }
+      .nav-links { display: none; }
+      .menu-page-hero { padding: 120px 24px 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon"><span></span><span></span><span></span><span></span></div>
+      <div>
+        <div class="nav-logo-name">JUNO</div>
+        <div class="nav-logo-sub">The Bakery & Kitchen</div>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="menu.html" class="nav-link active">Menu</a>
+      <a href="about.html" class="nav-link">Our Story</a>
+      <a href="blog.html" class="nav-link">Journal</a>
+    </div>
+    <div class="nav-actions">
+      <div class="search-container">
+        <input type="text" id="menu-search-input" class="menu-search-input" placeholder="Search dishes...">
+        <button class="nav-search-btn" aria-label="Search" id="menu-search-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="menu-page-hero">
+    <div class="container">
+      <p style="font-size:12px; text-transform:uppercase; letter-spacing:0.25em; color:var(--color-gold); margin-bottom:16px; font-weight:600;">Authentic Taste Since 1975</p>
+      <h1>Juno's Full Kitchen</h1>
+      <p>From traditional Irani Dum Chai to highway-famous Biryanis and hand-crafted cakes. Browse our menu and find your perfect pitstop meal.</p>
+    </div>
+  </div>
+
+  <section class="menu-section">
+    <div class="menu-layout">
+      <!-- Sidebar -->
+      <aside class="menu-sidebar">
+        <h3 class="sidebar-title">Categories</h3>
+        <nav class="sidebar-nav" id="sidebar-nav">
+          <!-- Populated by script -->
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="menu-main" id="menu-content">
+        <!-- Populated by script -->
+      </main>
+    </div>
+  </section>
+
+  <footer class="big-footer">
+    <div class="footer-brand-title">JUNO</div>
+  </footer>
+
+  <script type="module">
+    import { menuData } from './js/menuData.js';
+
+    const sidebarNav = document.getElementById('sidebar-nav');
+    const menuContent = document.getElementById('menu-content');
+
+    function slugify(text) {
+      return text.toLowerCase().replace(/[^a-z0-9]/g, '-');
+    }
+
+    menuData.forEach((section, index) => {
+      const slug = slugify(section.category);
+      
+      // Create Sidebar Link
+      const link = document.createElement('a');
+      link.href = `#${slug}`;
+      link.className = `sidebar-link ${index === 0 ? 'active' : ''}`;
+      link.textContent = section.category;
+      link.onclick = (e) => {
+        document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      };
+      sidebarNav.appendChild(link);
+
+      // Create Section
+      const categorySection = document.createElement('div');
+      categorySection.id = slug;
+      categorySection.className = 'category-section';
+      
+      categorySection.innerHTML = `
+        <div class="category-header">
+          <h2>${section.category}</h2>
+        </div>
+        <div class="menu-grid">
+          ${section.items.map(item => `
+            <div class="menu-card">
+              <div class="menu-card__image-wrapper">
+                <img class="menu-card__image" src="${item.image}" alt="${item.name}" loading="lazy">
+              </div>
+              <div class="menu-card__content">
+                <h3 class="menu-card__title">${item.name}</h3>
+                <div class="menu-card__footer">
+                  <span class="menu-card__price">₹${item.price}</span>
+                  <button class="menu-card__add-btn" aria-label="Add to order">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+      menuContent.appendChild(categorySection);
+    });
+
+    // Handle Active Link on Scroll
+    const sections = document.querySelectorAll('.category-section');
+    const navLinks = document.querySelectorAll('.sidebar-link');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= (sectionTop - 150)) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').includes(current)) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Handle Search Bar Animation and Filtering
+    const searchBtn = document.getElementById('menu-search-btn');
+    const searchContainer = document.querySelector('.search-container');
+    const searchInput = document.getElementById('menu-search-input');
+
+    if (searchBtn && searchInput) {
+      searchBtn.addEventListener('click', () => {
+        searchContainer.classList.toggle('active');
+        if (searchContainer.classList.contains('active')) {
+          searchInput.focus();
+        } else {
+          searchInput.value = '';
+          searchInput.dispatchEvent(new Event('input'));
+        }
+      });
+
+      searchInput.addEventListener('input', (e) => {
+        const term = e.target.value.toLowerCase();
+        const allSections = document.querySelectorAll('.category-section');
+        
+        allSections.forEach(sec => {
+          const catTitle = sec.querySelector('.category-header h2').textContent.toLowerCase();
+          const cards = sec.querySelectorAll('.menu-card');
+          let hasVisible = false;
+          
+          cards.forEach(card => {
+            const cardTitle = card.querySelector('.menu-card__title').textContent.toLowerCase();
+            if (cardTitle.includes(term) || catTitle.includes(term)) {
+              card.style.display = 'flex';
+              hasVisible = true;
+            } else {
+              card.style.display = 'none';
+            }
+          });
+          
+          sec.style.display = hasVisible ? 'block' : 'none';
+        });
+      });
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+  <script>
+    const lenis = new Lenis();
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  </script>
+  <script type="module" src="js/mobileMenu.js"></script>
+</body>
+</html>
