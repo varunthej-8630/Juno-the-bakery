@@ -246,6 +246,61 @@
       .img-split-panel { height: 50vw; min-height: 220px; }
       .location-strip { padding: 20px 24px; flex-direction: column; align-items: flex-start; }
     }
+
+    /* ---- PRELOADER ---- */
+    .preloader {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      background: var(--color-navy, #0F2347);
+      z-index: 99999;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      transition: opacity 1s ease, transform 1s cubic-bezier(0.7, 0, 0.3, 1);
+      color: #FFF; text-align: center;
+    }
+    .preloader.hidden { opacity: 0; pointer-events: none; transform: scale(1.05); }
+    .preloader-content { display: flex; flex-direction: column; align-items: center; padding: 20px; }
+    
+    .preloader-logo-icon {
+      width: 80px; height: 80px; background: rgba(0,0,0,0.15);
+      border-radius: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 18px;
+      margin-bottom: 36px; border: 1.5px solid rgba(245,197,24,0.4);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      animation: pulseLogo 2s infinite alternate;
+    }
+    .preloader-logo-icon span { background: var(--color-gold, #F5C518); border-radius: 3px; }
+    @keyframes pulseLogo {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(245,197,24, 0.2); }
+      100% { transform: scale(1.02); box-shadow: 0 0 30px 10px rgba(245,197,24, 0); }
+    }
+    
+    .preloader-brand { display: flex; flex-direction: column; align-items: center; }
+    .preloader-name {
+      font-family: var(--font-display, serif); font-size: 72px; font-weight: 700; line-height: 1; margin-bottom: 8px; letter-spacing: 0.02em;
+      opacity: 0; animation: fadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.2s;
+    }
+    .preloader-sub {
+      font-family: var(--font-sans, sans-serif); font-size: 18px; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 48px;
+      opacity: 0; animation: fadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.4s;
+    }
+    .preloader-tagline {
+      font-family: var(--font-sans, sans-serif); font-size: 20px; font-weight: 500; letter-spacing: 0.02em; margin-bottom: 60px;
+      opacity: 0; animation: fadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.6s;
+    }
+    .preloader-est {
+      font-family: var(--font-sans, sans-serif); font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      opacity: 0; animation: fadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards 0.8s;
+    }
+    
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(30px) scale(0.95); filter: blur(4px); }
+      100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+    }
+    
+    @media (max-width: 768px) {
+      .preloader-name { font-size: 56px; }
+      .preloader-sub { font-size: 15px; margin-bottom: 40px; }
+      .preloader-tagline { font-size: 16px; margin-bottom: 40px; padding: 0 20px; line-height: 1.4; }
+      .preloader-est { font-size: 11px; }
+    }
   </style>
 
   <!-- Scripts -->
@@ -254,6 +309,40 @@
   <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
 </head>
 <body>
+
+  <!-- PRELOADER -->
+  <div id="preloader" class="preloader">
+    <div class="preloader-content">
+      <div class="preloader-logo-icon">
+        <span></span><span></span><span></span><span></span>
+      </div>
+      <div class="preloader-brand">
+        <span class="preloader-name">JUNO</span>
+        <span class="preloader-sub">The Bakery &amp; Kitchen</span>
+      </div>
+      <div class="preloader-tagline">
+        Born on the Highway. Built on Trust.
+      </div>
+      <div class="preloader-est">
+        Est. 1975 &bull; Tangutur, AP
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    document.body.style.overflow = 'hidden'; 
+    window.addEventListener('load', () => {
+      // Small delay for cinematic pacing
+      setTimeout(() => {
+        const preloader = document.getElementById('preloader');
+        if(preloader) {
+          preloader.classList.add('hidden');
+          document.body.style.overflow = '';
+          setTimeout(() => preloader.remove(), 1000);
+        }
+      }, 2400); // 2.4s to let animations play fully
+    });
+  </script>
 
   <!-- TOP BAR -->
   <div class="top-bar">
