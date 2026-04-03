@@ -61,6 +61,13 @@
   opacity: 1;
 }
 
+@media (max-width: 600px) {
+  .search-container.active .menu-search-input {
+    width: calc(100vw - 230px);
+    padding: 8px 12px;
+  }
+}
+
 /* Section Wrapper */
 .menu-section {
   padding: 40px 0 var(--space-20);

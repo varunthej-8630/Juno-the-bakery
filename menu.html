@@ -24,7 +24,7 @@
       background: var(--color-navy-dark);
       border-bottom: 1px solid rgba(245, 197, 24, 0.12);
     }
-    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
     .nav-logo-icon { width: 44px; height: 44px; background: var(--color-navy-mid); border-radius: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 9px; border: 1.5px solid rgba(245,197,24,0.3); }
     .nav-logo-icon span { background: var(--color-gold); border-radius: 2px; }
     .nav-logo-name { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: #FFF; line-height: 1; }
@@ -33,6 +33,11 @@
     .nav-link { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; transition: color 0.3s; }
     .nav-link:hover, .nav-link.active { color: #FFF; font-weight: 600; }
 
+    .nav-search-btn {
+      background: transparent; border: none; color: #FFF; width: 36px; height: 36px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s;
+    }
+    .nav-search-btn:hover { background: rgba(255,255,255,0.1); color: var(--color-gold); }
     .menu-page-hero {
       background: var(--color-navy-dark);
       padding: 140px 60px 60px;
